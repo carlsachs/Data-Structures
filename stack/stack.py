@@ -22,10 +22,10 @@ class Stack:
 
     def push(self, value):
         self.storage.add_to_tail(value)
-        self.size = += 1
+        self.size = + 1
 
     def pop(self):
-        if self.size == 0
+        if self.size == 0:
             return None
         else:
             self.size -= 1
