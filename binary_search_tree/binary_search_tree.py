@@ -49,6 +49,11 @@ class BSTNode:
             else:
                 return self.left.contains(target)
         # Case 3: otherwise
+        else:
+            if self.right is None:
+                return False
+            esle:
+            return self.right.contains(target)
 
 
     # Return the maximum value found in the tree
