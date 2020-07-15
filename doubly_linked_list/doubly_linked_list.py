@@ -49,10 +49,9 @@ class DoublyLinkedList:
     the old head node's previous pointer accordingly."""
     def add_to_head(self, value):
         new_node = ListNode(value)
-        if self.length = 0:
+        if self.length == 0:
             self.head = new_node
             self.tail = new_node
-            self.length += 1
         else:
             new_node.next = self.head
             self.head.prev = new_node
@@ -75,15 +74,14 @@ class DoublyLinkedList:
     the old tail node's next pointer accordingly."""
     def add_to_tail(self, value):
         new_node = ListNode(value)
-        if self.length = 0:
+        if self.length == 0:
             self.head = new_node
             self.tail = new_node
-            self.length += 1
         else:
             new_node.prev = self.tail
             self.tail.next = new_node
             self.tail = new_node
-        self.length -= 1
+        self.length += 1
 
     """Removes the List's current tail node, making the 
     current tail's previous node the new tail of the List.
@@ -112,18 +110,32 @@ class DoublyLinkedList:
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
     def delete(self, node):
-        if node == self.head:
-            self.head = self.head.next
+        self.length -= 1
+        if self.head == self.tail:
             self.head = None
             self.tail = None
+            return
+        if node == self.head:
+            self.head = self.head.next
+            self.head.prev = None
             return
         if node == self.tail:
             self.tail = self.tail.prev
             self.tail.next = None
-            self.length -= 1
+            return
         else:
             node.prev.next = node.next
+            node.next.prev = node.prev
         
     """Returns the highest value currently in the list"""
     def get_max(self):
-        pass
+        max_value = self.head.value
+        current_node = self.head
+        while (current_node.next != None):
+            if current_node.value > max_value:
+                max_value = current_node.value
+            else:
+                current_node = current_node.next
+        if current_node.value > max_value:
+            max_value = current_node.value
+        return max_value
