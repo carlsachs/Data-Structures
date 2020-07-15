@@ -17,14 +17,22 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
+        # Case 1: value is less than self.value
         if value < self.value:
+            # if there is no left child, insert value here
             if self.left is None:
                 self.left = BSTNode(value)
             else:
+                # Repeat process on left subtree
                 self.left.insert(value)
         elif value >= self.value:
+            # Case 2: Value is greater than or equal to self.value
             if self.right is None:
+                # If there is no right child, insert value here
                 self.right = BSTNode(value)
+            else:
+                # Repeat process on right subtree
+                self.right.insert(value)
             
 
     # Return True if the tree contains the value
